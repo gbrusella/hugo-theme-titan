@@ -1,7 +1,12 @@
 # TITAN — Hugo theme
 
-A dark, gold-on-black theme with an animated procedural tessellation background
-and a persisted site-wide on/off toggle.
+A dark, gold-on-black theme with an animated procedural tessellation background.
+The animation runs on a `<canvas>` and can be toggled off by visitors at any time —
+their choice is saved in `localStorage`.
+
+**[Live demo](https://gbrusella.github.io/hugo-theme-titan/)**
+
+---
 
 ## Install
 
@@ -11,35 +16,98 @@ Add as a git submodule (recommended):
 git submodule add https://github.com/gbrusella/hugo-theme-titan themes/titan
 ```
 
-Or clone manually into your site's `themes/` directory, then set
-`theme = "titan"` in your `hugo.toml`.
+Then set `theme = "titan"` in your `hugo.toml`. Requires Hugo **extended** v0.110+.
+
+---
 
 ## Configure
 
 ```toml
 [params.titan]
-shape  = "overlay"   # voronoi | triangles | overlay | hexagons | squares | rhombille | hcp | fcc | bcc | cubic
-motion = "sheet"     # bulge | sheet   (2D shapes only; 3D lattices always spin)
-relax  = 2           # Lloyd relaxation passes — 0 = raw Poisson, 2-3 = even "blue-noise"
-cell   = 66          # plate / lattice spacing in px (smaller = more, finer cells)
+shape  = "overlay"   # see Shapes below
+motion = "sheet"     # sheet | bulge
+relax  = 2           # 0–3  (0 = raw random, 3 = very even cells)
+cell   = 66          # cell size in px — smaller = more, finer cells
 
 [params.hero]
 kicker  = "Augmentation Online"
 title   = "TITAN"
 tagline = "Adaptive nanoceramic shield — reactive plating engaged"
+
+# controls = false   # uncomment to hide the in-page settings panel
 ```
 
-These map to `data-*` attributes on the `<canvas id="titan">` and are read by
-`assets/js/titan-bg.js`.
+### Shapes
+
+| Value | Description |
+|---|---|
+| `overlay` | Delaunay triangles with Voronoi edges drawn on top *(default)* |
+| `voronoi` | Irregular armour polygons |
+| `triangles` | Delaunay triangles only |
+| `hexagons` | Regular honeycomb |
+| `squares` | Square grid |
+| `rhombille` | Isometric rhombus tiling |
+| `hcp` | Hexagonal close-packed lattice *(3-D, always spins)* |
+| `fcc` | Face-centred cubic lattice *(3-D)* |
+| `bcc` | Body-centred cubic lattice *(3-D)* |
+| `cubic` | Simple cubic lattice *(3-D)* |
+
+`motion` and `relax` only apply to the six 2-D shapes. The 3-D lattices always rotate.
+
+---
+
+## Colours
+
+All colours are CSS custom properties on `:root`. Override any of them in a
+custom stylesheet linked from a custom `head` partial:
+
+```css
+:root {
+  --gold-bright: #ffe9a0;          /* highlights, headings, active states */
+  --gold:        #d4af37;          /* links, accents                      */
+  --gold-deep:   #8a6d1d;          /* borders, dimmed elements            */
+  --ink:         #050506;          /* page background                     */
+  --paper:       rgba(10,10,12,0.66); /* content panel (with blur)        */
+  --text:        #e9e3cf;          /* body text                           */
+  --text-dim:    rgba(233,227,207,0.62); /* secondary text                */
+}
+```
+
+Example — silver on navy:
+
+```css
+:root {
+  --gold-bright: #e8eaf6;
+  --gold:        #9fa8da;
+  --gold-deep:   #3949ab;
+  --ink:         #050a1a;
+  --paper:       rgba(5,10,26,0.70);
+  --text:        #dde1f0;
+  --text-dim:    rgba(221,225,240,0.60);
+}
+```
+
+---
 
 ## Background toggle
 
-Any element with `data-titan-toggle` becomes an on/off switch (the header
-includes one styled as a pill). State is saved in `localStorage` and the
-default respects `prefers-reduced-motion`.
+Any element with `data-titan-toggle` becomes an on/off button. The header
+already includes one. State persists in `localStorage` and the background
+defaults to **on** for all visitors.
+
+You can also control it from JavaScript:
+
+```js
+Titan.on()                                        // show background
+Titan.off()                                       // hide background
+Titan.toggle()                                    // flip
+Titan.setConfig({ shape: 'hexagons', cell: 50 }) // live-update settings
+Titan.reset()                                     // restore theme defaults
+```
+
+---
 
 ## Editing the engine
 
-`assets/js/titan-bg.js` and `assets/css/titan.css` are generated from the
-[source playground](https://github.com/gbrusella/titan-bg). Do not edit them
-directly — edit the playground and re-run `node scripts/extract-engine.js`.
+`assets/js/titan-bg.js` and `assets/css/titan.css` are **generated files** — do not
+edit them directly. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
