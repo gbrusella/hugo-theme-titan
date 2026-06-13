@@ -3,6 +3,7 @@ license = "MIT"
 licenselink = "https://github.com/gbrusella/hugo-theme-titan/blob/main/LICENSE"
 description = "Animated gold-on-black tessellation theme (Deus Ex 'Titan shield' aesthetic), with a site-wide background on/off toggle."
 homepage = "https://github.com/gbrusella/hugo-theme-titan"
+demosite = "https://gbrusella.github.io/hugo-theme-titan/"
 min_version = "0.110.0"
 tags = ["dark", "animated", "canvas", "minimal", "landing"]
 features = ["animated-background", "toggle", "blog"]
