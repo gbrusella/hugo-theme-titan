@@ -7,7 +7,7 @@ layout improvements, documentation fixes, and new features.
 
 ## Project structure
 
-```
+```text
 hugo-theme-titan/
 ├── assets/
 │   ├── css/
@@ -29,10 +29,12 @@ hugo-theme-titan/
 ## What lives where
 
 ### Templates and layouts
+
 `layouts/` is the right place for Hugo-specific changes — partials, base layout,
 shortcodes, etc. Edit freely and open a PR.
 
 ### The animation engine and stylesheet
+
 `assets/js/titan-bg.js` and `assets/css/titan.css` are **generated from a separate
 source repository** — the [titan-bg playground](https://github.com/gbrusella/titan-bg).
 Do **not** edit them directly here; your changes will be overwritten the next time
@@ -52,7 +54,7 @@ ln -sf "$(pwd)" exampleSite/themes/titan   # symlink the theme in
 hugo server -s exampleSite
 ```
 
-Open http://localhost:1313.
+Open <http://localhost:1313>.
 
 ---
 
@@ -72,6 +74,7 @@ from the source playground.
 ## Reporting issues
 
 Open a GitHub issue with:
+
 - What you expected vs. what happened
 - Hugo version (`hugo version`)
 - Browser and OS (for visual bugs)
