@@ -14,7 +14,7 @@
   </main>
   {{ partial "footer.html" . }}
 
-  {{ $js := resources.Get "js/titan-bg.js" | fingerprint }}
+  {{ $js := resources.Get "js/titan-bg.min.js" | fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
 </body>
 
