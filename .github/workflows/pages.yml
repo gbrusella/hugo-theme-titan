@@ -21,7 +21,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Hugo
         run: |
@@ -33,7 +33,7 @@ jobs:
 
       - name: Configure Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Link theme into exampleSite
         run: mkdir -p exampleSite/themes && ln -sf "$(pwd)" exampleSite/themes/titan
@@ -42,7 +42,7 @@ jobs:
         run: hugo -s exampleSite --minify --baseURL "https://gbrusella.github.io/hugo-theme-titan/"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: exampleSite/public
 
@@ -54,4 +54,4 @@ jobs:
     needs: build
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
