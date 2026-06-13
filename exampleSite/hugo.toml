@@ -1,0 +1,28 @@
+baseURL = "/"
+title = "TITAN"
+theme = "titan"
+
+[params]
+description = "A dark, gold-plated tessellation theme."
+
+  # Animated background — see themes/titan/README.md for all values.
+  [params.titan]
+  shape = "overlay"   # voronoi | triangles | overlay | hexagons | squares | rhombille | hcp | fcc | bcc | cubic
+  motion = "sheet"    # bulge | sheet  (2D shapes only)
+  relax = 2           # Lloyd relaxation passes (0 = raw Poisson)
+  cell = 66           # plate / lattice spacing in px
+  controls = true     # show the visitor-facing settings panel
+
+  [params.hero]
+  kicker = "Augmentation Online"
+  title = "TITAN"
+  tagline = "Adaptive nanoceramic shield — reactive plating engaged"
+
+[[menu.main]]
+  name = "Posts"
+  url = "/posts/"
+  weight = 1
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 2

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.Lang "en" }}" class="titan-on">
+
+<head>
+  {{ partial "head.html" . }}
+</head>
+
+<body>
+  {{ partial "background.html" . }}
+  {{ partial "header.html" . }}
+  {{ if ne site.Params.titan.controls false }}{{ partial "controls.html" . }}{{ end }}
+  <main class="site-main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+
+  {{ $js := resources.Get "js/titan-bg.js" | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+</body>
+
+</html>
