@@ -13,6 +13,15 @@ description = "A dark, gold-plated tessellation theme."
   cell = 66           # plate / lattice spacing in px
   controls = true     # show the visitor-facing settings panel
 
+  [params.author]
+  name = "Your Name"
+  bio = "A short sentence about yourself."
+  avatar = ""   # e.g. /img/avatar.jpg — leave blank to hide
+
+  [[params.author.links]]
+  label = "GitHub"
+  url   = "https://github.com/you"
+
   [params.hero]
   kicker = "Augmentation Online"
   title = "TITAN"

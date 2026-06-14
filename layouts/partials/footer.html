@@ -1,3 +1,3 @@
 <footer class="site-footer">
-  © {{ now.Year }} {{ site.Title }} · built with Hugo + TITAN
+  © {{ now.Year }} {{ with site.Params.author.name }}{{ . }}{{ else }}{{ site.Title }}{{ end }} · built with Hugo + TITAN
 </footer>

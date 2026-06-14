@@ -1,0 +1,16 @@
+{{ with site.Params.author }}
+{{ if .name }}
+<div class="author-card">
+  {{ if .avatar }}<img class="author-avatar" src="{{ .avatar | relURL }}" alt="{{ .name }}">{{ end }}
+  <div class="author-info">
+    <div class="author-name">{{ .name }}</div>
+    {{ with .bio }}<p class="author-bio">{{ . }}</p>{{ end }}
+    {{ with .links }}
+    <div class="author-links">
+      {{ range . }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+{{ end }}
